@@ -1,189 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Code Extractor</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f4f6f9;
-      color: #333;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <title>Code Extractor</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f6f9;
+        color: #333;
+      }
 
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      background: #fff;
-      padding: 25px 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
+      .container {
+        max-width: 900px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 25px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
 
-    h2 {
-      text-align: center;
-      font-size: 26px;
-      margin-bottom: 15px;
-      color: #135f37;
-      text-shadow: 3px 2px 2px rgba(0, 0, 0.2, 0.3);
-      margin-bottom: 20px;
-    }
+      h2 {
+        text-align: center;
+        font-size: 25px;
+        margin: 0 auto 25px auto; /* centers horizontally */
+        font-weight: 800;
+        color: #2c3e50; /* deep elegant dark blue-gray */
+        letter-spacing: 1.3px;
+        text-transform: uppercase;
+        border-bottom: 4px solid #3498db; /* accent underline */
+        display: inline-block;
+        padding-bottom: 6px;
+      }
 
-    textarea {
-      width: 100%;
-      height: 220px;
-      padding: 12px;
-      font-size: 14px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      resize: vertical;
-      box-sizing: border-box;
-      margin-bottom: 15px;
-    }
-    textarea:focus {
-      border-color: #000000;
-      outline: none;
-    }
+      textarea {
+        width: 100%;
+        height: 220px;
+        padding: 12px;
+        font-size: 14px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        resize: vertical;
+        box-sizing: border-box;
+        margin-bottom: 15px;
+      }
+      textarea:focus {
+        border-color: #000000;
+        outline: none;
+      }
 
-    button {
-      display: inline-block;
-      padding: 10px 24px;
-      font-size: 15px;
-      border: none;
-      border-radius: 6px;
-      background: #8d410b;
-      color: white;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    button:hover {
-      background: #0056b3;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
+      button {
+        display: inline-block;
+        padding: 10px 24px;
+        font-size: 15px;
+        border: none;
+        border-radius: 6px;
+        background: #8d410b;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      button:hover {
+        background: #0056b3;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
 
-    #results {
-      margin-top: 20px;
-      padding: 15px;
-      background: #fafafa;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      max-height: 300px;
-      overflow-y: auto;
-    }
+      #results {
+        margin-top: 20px;
+        padding: 15px;
+        background: #fafafa;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        max-height: 300px;
+        overflow-y: auto;
+      }
 
-    #results h3 {
-      margin: 0 0 10px 0;
-      font-size: 18px;
-      color: #444;
-    }
+      #results h3 {
+        margin: 0 0 10px 0;
+        font-size: 18px;
+        color: #444;
+      }
 
-    #results ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
+      #results ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
 
-    #results li {
-      padding: 8px 10px;
-      border-bottom: 1px solid #eee;
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      font-size: 13px;
-    }
+      #results li {
+        padding: 8px 10px;
+        border-bottom: 1px solid #eee;
+        font-family: Georgia, "Times New Roman", Times, serif;
+        font-size: 13px;
+      }
 
-    #copyBtn {
-      margin-top: 25px;
-      display: none; /* hidden until codes appear */
-      background: #135f37;
-      font-size: smaller;
-    }
-    #copyBtn:hover {
-      background: #0d3f26;
-    }
+      #copyBtn {
+        margin-top: 25px;
+        display: none; /* hidden until codes appear */
+        background: #135f37;
+        font-size: smaller;
+      }
+      #copyBtn:hover {
+        background: #0d3f26;
+      }
 
-    footer {
-      text-align: center;
-      padding: 20px 10px;
-      margin-top: 30px;
-      background: linear-gradient(90deg, #274260, #084b93);
-      color: white;
-      font-size: 16px;
-      letter-spacing: 0.5px;
-    }
+      footer {
+        text-align: center;
+        padding: 20px 10px;
+        margin-top: 30px;
+        background: linear-gradient(90deg, #274260, #084b93);
+        color: white;
+        font-size: 16px;
+        letter-spacing: 0.5px;
+      }
 
-    footer span {
-      font-family: "Georgia", serif;
-      font-style: italic;
-      font-weight: bold;
-      color: #f0df23;
-    }
+      footer span {
+        font-family: "Georgia", serif;
+        font-style: italic;
+        font-weight: bold;
+        color: #f0df23;
+      }
 
       .badge {
-    display: inline-block;
-    padding: 10px 20px;
-    border: 2px solid #facc15;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #facc15;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(6px);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    box-shadow: 0 0 12px rgba(250, 204, 21, 0.6);
-  }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h2>Mail Code Extractor</h2>
-    <textarea id="mailInput" placeholder="Paste your full mail text here and then click on 'Extract Codes' button to see the Magic..."></textarea><br>
-    <button onclick="extractCodes()">Extract Codes</button>
-    
-    <div id="results">
-      <h3>Extracted Codes:</h3>
-      <ul id="codeList"></ul>
+        display: inline-block;
+        padding: 10px 20px;
+        border: 2px solid #facc15;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #facc15;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(6px);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        box-shadow: 0 0 12px rgba(250, 204, 21, 0.6);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Mail Code Extractor</h2>
+      <textarea
+        id="mailInput"
+        placeholder="Paste your full mail text here and then click on 'Extract Codes' button to see the Magic..."
+      ></textarea
+      ><br />
+      <button onclick="extractCodes()">Extract Codes</button>
+
+      <div id="results">
+        <h3>Extracted Codes:</h3>
+        <ul id="codeList"></ul>
+      </div>
+
       <button id="copyBtn" onclick="copyAll()">Copy All</button>
     </div>
-  </div>
 
-  <footer>
-  <div class="badge">✨ Crafted by "Raunak Kothari"✨</div>
-</footer>
+    <footer>
+      <div class="badge">✨ Crafted by "Raunak Kothari"✨</div>
+    </footer>
 
+    <script>
+      function extractCodes() {
+        const text = document.getElementById("mailInput").value;
+        const regex = /\b(?:GYFRR|QWKRR)\d{11}\b/g;
+        const matches = text.match(regex) || [];
 
+        const list = document.getElementById("codeList");
+        list.innerHTML = "";
 
-  <script>
-    function extractCodes() {
-      const text = document.getElementById("mailInput").value;
-      const regex = /\b(?:GYFRR|QWKRR)\d{11}\b/g;
-      const matches = text.match(regex) || [];
-
-      const list = document.getElementById("codeList");
-      list.innerHTML = "";
-
-      if (matches.length === 0) {
-        list.innerHTML = "<li>No codes found</li>";
-        document.getElementById("copyBtn").style.display = "none";
-      } else {
-        matches.forEach(code => {
-          const li = document.createElement("li");
-          li.textContent = code;
-          list.appendChild(li);
-        });
-        document.getElementById("copyBtn").style.display = "inline-block";
+        if (matches.length === 0) {
+          list.innerHTML = "<li>No codes found</li>";
+          document.getElementById("copyBtn").style.display = "none";
+        } else {
+          matches.forEach((code) => {
+            const li = document.createElement("li");
+            li.textContent = code;
+            list.appendChild(li);
+          });
+          document.getElementById("copyBtn").style.display = "inline-block";
+        }
       }
-    }
 
-    function copyAll() {
-      const items = document.querySelectorAll("#codeList li");
-      const codes = Array.from(items).map(li => li.textContent).join("\n");
+      function copyAll() {
+        const items = document.querySelectorAll("#codeList li");
+        const codes = Array.from(items)
+          .map((li) => li.textContent)
+          .join("\n");
 
-      navigator.clipboard.writeText(codes).then(() => {
-        alert("All codes copied to clipboard!");
-      });
-    }
-  </script>
-</body>
+        navigator.clipboard.writeText(codes).then(() => {
+          alert("All codes copied to clipboard!");
+        });
+      }
+    </script>
+  </body>
 </html>
