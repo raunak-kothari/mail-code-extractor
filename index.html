@@ -6,52 +6,128 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
-      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      background: #f4f6f9;
+      color: #333;
     }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 15px;
+      color: #222;
+    }
+
+    p {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
     textarea {
       width: 100%;
-      height: 200px;
-      padding: 10px;
+      height: 220px;
+      padding: 12px;
       font-size: 14px;
-      border-radius: 8px;
+      border-radius: 6px;
       border: 1px solid #ccc;
+      resize: vertical;
+      box-sizing: border-box;
+      margin-bottom: 15px;
     }
+    textarea:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+
     button {
-      margin-top: 10px;
+      display: inline-block;
       padding: 10px 20px;
-      font-size: 16px;
+      font-size: 15px;
       border: none;
-      border-radius: 8px;
+      border-radius: 6px;
       background: #007BFF;
       color: white;
       cursor: pointer;
+      transition: background 0.2s ease;
     }
     button:hover {
       background: #0056b3;
     }
+
     #results {
       margin-top: 20px;
       padding: 15px;
-      background: #fff;
+      background: #fafafa;
       border-radius: 8px;
       border: 1px solid #ddd;
-      max-height: 250px;
+      max-height: 300px;
       overflow-y: auto;
+    }
+
+    #results h3 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+      color: #444;
+    }
+
+    #results ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #results li {
+      padding: 6px 0;
+      border-bottom: 1px solid #eee;
       font-family: monospace;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+      background: #f1f1f1;
+      color: #555;
+      font-size: 14px;
+      border-top: 1px solid #ddd;
+    }
+
+    footer span {
+      font-family: "Georgia", serif;
+      font-style: italic;
+      font-weight: bold;
+      color: #007BFF;
     }
   </style>
 </head>
 <body>
-  <h2>Mail Code Extractor</h2>
-  <p>Paste your mail content below:</p>
-  <textarea id="mailInput" placeholder="Paste your full mail text here..."></textarea><br>
-  <button onclick="extractCodes()">Extract Codes</button>
-  
-  <div id="results">
-    <h3>Extracted Codes:</h3>
-    <ul id="codeList"></ul>
+  <div class="container">
+    <h2>Mail Code Extractor</h2>
+    <p>Paste your mail content below:</p>
+    <textarea id="mailInput" placeholder="Paste your full mail text here..."></textarea><br>
+    <button onclick="extractCodes()">Extract Codes</button>
+    
+    <div id="results">
+      <h3>Extracted Codes:</h3>
+      <ul id="codeList"></ul>
+    </div>
   </div>
+
+  <footer>
+    Created by <span>Raunak Kothari</span>
+  </footer>
 
   <script>
     function extractCodes() {
@@ -75,4 +151,3 @@
   </script>
 </body>
 </html>
-
