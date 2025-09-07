@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Code Extractor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+    }
+    textarea {
+      width: 100%;
+      height: 200px;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #results {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      max-height: 250px;
+      overflow-y: auto;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h2>Mail Code Extractor</h2>
+  <p>Paste your mail content below:</p>
+  <textarea id="mailInput" placeholder="Paste your full mail text here..."></textarea><br>
+  <button onclick="extractCodes()">Extract Codes</button>
+  
+  <div id="results">
+    <h3>Extracted Codes:</h3>
+    <ul id="codeList"></ul>
+  </div>
+
+  <script>
+    function extractCodes() {
+      const text = document.getElementById("mailInput").value;
+      const regex = /\b(?:GYFRR|QWKRR)\d{11}\b/g;
+      const matches = text.match(regex) || [];
+
+      const list = document.getElementById("codeList");
+      list.innerHTML = "";
+
+      if (matches.length === 0) {
+        list.innerHTML = "<li>No codes found</li>";
+      } else {
+        matches.forEach(code => {
+          const li = document.createElement("li");
+          li.textContent = code;
+          list.appendChild(li);
+        });
+      }
+    }
+  </script>
+</body>
+</html>
