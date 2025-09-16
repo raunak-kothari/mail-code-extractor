@@ -165,7 +165,7 @@
     <script>
       function extractCodes() {
         const text = document.getElementById("mailInput").value;
-        const regex = /\b(?:GYFRR|QWKRR)\d{11}\b/g;
+        const regex = /\b(?:GYFRR|QWKRR|GYFSC)\d{11}\b/g;
         const matches = text.match(regex) || [];
 
         const list = document.getElementById("codeList");
@@ -197,3 +197,4 @@
     </script>
   </body>
 </html>
+
